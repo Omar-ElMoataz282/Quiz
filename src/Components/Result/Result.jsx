@@ -13,7 +13,7 @@ function Result(props) {
               props.answers[index] === question.correctAnswer ? "green" : "red",
           }}
         >
-          Your Anwser:
+          Your Anwser:{" "}
           {props.answers[index] ? props.answers[index] : " Not Answered"}
         </p>
 
