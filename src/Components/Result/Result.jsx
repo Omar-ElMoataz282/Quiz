@@ -1,4 +1,11 @@
+import { useEffect } from "react";
+
 function Result(props) {
+  // Clear localStorage when the component mounts
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
   const showQuestion = props.questions.map((question, index) => (
     <div key={index} className="px-4 mb-4">
       <h3 className="mb-3">

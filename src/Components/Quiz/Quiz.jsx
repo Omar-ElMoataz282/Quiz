@@ -1,5 +1,5 @@
 import { Button, Container, Form } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Questions } from "../../Data/Questions";
 import Result from "../Result/Result";
 
@@ -9,6 +9,19 @@ function Quiz() {
     Array(Questions.length).fill(null)
   );
   const [showResult, setShowResult] = useState(false);
+
+  useEffect(() => {
+    const savedAnswers = localStorage.getItem("Answers");
+    setCurQue(parseInt(localStorage.getItem("CurrentQuestion")) || 0);
+    if (savedAnswers) {
+      setSelectedAnswers(JSON.parse(savedAnswers));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("Answers", JSON.stringify(selectedAnswers));
+    localStorage.setItem("CurrentQuestion", curQue);
+  }, [selectedAnswers, curQue]);
 
   // Function to handle the answer change
   function handleAnswerChange(answer) {
