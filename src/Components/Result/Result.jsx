@@ -31,7 +31,8 @@ function Result(props) {
       <div className="px-5 py-3">
         <h1 className="text-center mb-5">Quiz Result</h1>
         <h2 className="text-center">
-          Your Score is: {props.score} out of {props.questionsNums}
+          Your Score is: <br className="d-inline d-md-none" />
+          {props.score} out of {props.questionsNums}
         </h2>
       </div>
 
