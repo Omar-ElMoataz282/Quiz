@@ -1,0 +1,8 @@
+body {
+  background-color: #f3f3fe !important;
+}
+
+.custom-point label:hover,
+.custom-point input:hover {
+  cursor: pointer;
+}
