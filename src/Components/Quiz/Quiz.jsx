@@ -2,6 +2,7 @@ import { Button, Container, Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { Questions } from "../../Data/Questions";
 import Result from "../Result/Result";
+import Timer from "../Timer/Timer";
 
 function Quiz() {
   const [curQue, setCurQue] = useState(0);
@@ -9,7 +10,16 @@ function Quiz() {
     Array(Questions.length).fill(null)
   );
   const [showResult, setShowResult] = useState(false);
+  const [finished, setFinished] = useState(false);
 
+  // Add a useEffect to set showResult to true when finished is true
+  useEffect(() => {
+    if (finished) {
+      setShowResult(true);
+    }
+  }, [finished]);
+
+  // Load saved answers and current question from localStorage on component mount
   useEffect(() => {
     const savedAnswers = localStorage.getItem("Answers");
     setCurQue(parseInt(localStorage.getItem("CurrentQuestion")) || 0);
@@ -18,6 +28,7 @@ function Quiz() {
     }
   }, []);
 
+  // Save answers and current question to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("Answers", JSON.stringify(selectedAnswers));
     localStorage.setItem("CurrentQuestion", curQue);
@@ -75,9 +86,12 @@ function Quiz() {
     <Container className="min-vh-100 d-flex align-items-center">
       {!showResult ? (
         <div className="bg-white w-100">
-          <div className="p-5 pb-2">
-            <h3>{curQue === 0 ? `Questions:` : `Question ${curQue + 1}`}</h3>
-            <p>{curQue === 0 && "Fill out this quiz with right answer"}</p>
+          <div className="p-5 pb-2 d-flex justify-content-between align-items-center">
+            <div>
+              <h3>{curQue === 0 ? `Questions:` : `Question ${curQue + 1}`}</h3>
+              <p>{curQue === 0 && "Fill out this quiz with right answer"}</p>
+            </div>
+            <Timer setFinished={setFinished} />
           </div>
 
           <hr />
