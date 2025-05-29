@@ -86,7 +86,7 @@ function Quiz() {
     <Container className="min-vh-100 d-flex align-items-center">
       {!showResult ? (
         <div className="bg-white w-100">
-          <div className="p-5 pb-2 d-flex justify-content-between align-items-center">
+          <div className="p-5 pb-2 position-relative">
             <div>
               <h3>{curQue === 0 ? `Questions:` : `Question ${curQue + 1}`}</h3>
               <p>{curQue === 0 && "Fill out this quiz with right answer"}</p>

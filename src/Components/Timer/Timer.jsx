@@ -47,7 +47,10 @@ function Timer(props) {
   }, []);
 
   return (
-    <div className="bg-primary fw-bold text-white p-3 rounded-circle">
+    <div
+      className="bg-primary fw-bold text-white p-3 rounded-circle position-absolute"
+      style={{ top: "20px", right: "20px" }}
+    >
       {formatTime(timeRemaining)}
     </div>
   );
