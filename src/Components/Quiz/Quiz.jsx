@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Questions } from "../../Data/Questions";
 import Result from "../Result/Result";
 import Timer from "../Timer/Timer";
+import QueOptions from "../QueOptions/QueOptions";
 
 function Quiz() {
   const [curQue, setCurQue] = useState(0);
@@ -121,6 +122,12 @@ function Quiz() {
               {curQue < Questions.length - 1 ? "Next" : "Submit"}
             </Button>
           </div>
+
+          <QueOptions
+            curQue={curQue}
+            setCurQue={setCurQue}
+            selectedAnswers={selectedAnswers}
+          />
         </div>
       ) : (
         <Result
